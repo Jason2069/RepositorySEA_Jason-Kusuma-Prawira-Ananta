@@ -1,0 +1,34 @@
+#p1{
+    text-align: center;
+    font-style: italic;
+}
+
+#John{
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+}
+
+
+a{
+    color: wheat;
+}
+
+a:visited{
+    color: azure;
+}
+
+a:hover{
+    color: black;
+}
+
+
+
+body{
+    background-color: grey;
+    font-size: 22px;
+
+}
+

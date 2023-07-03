@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Wick: Chapter 4</title>
+    <link rel="icon" href="movie icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="John Wick.css">
+    <style>
+        #balance-display {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #f1f1f1;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>John Wick: Chapter 4</h1>
+    <div id="balance-display"><span id="balance-value"></span></div>
+    <hr>
+    <img src="https://image.tmdb.org/t/p/w500/vZloFAK7NmvMGKE7VkF5UHaz0I.jpg">
+    <hr>
+    <p>Deskripsi: John Wick mengungkap jalan untuk mengalahkan The High Table. Tapi sebelum dia bisa mendapatkan kebebasannya, 
+        <br>
+        Wick harus berhadapan dengan musuh baru dengan aliansi kuat di seluruh dunia dan kekuatan yang mengubah teman lama menjadi musuh.
+        <br>
+        Film tayang pada 22 Maret 2023.
+        <br>
+        Age rating: 15
+        <br>
+        Ticket Price: 60000
+    </p>
+
+    <h2>Book Ticket</h2>
+    <form onsubmit="return bookTicket()">
+        <label for="seats">Number of Seats (Maximum 6):</label>
+        <input type="number" id="seats" min="1" max="6" required>
+
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" required>
+
+        <input type="submit" value="Book Now">
+        <input type="button" value="Cancel" onclick="cancelTransaction()">
+    </form>
+    
+    <h2>Receipt</h2>
+    <div id="receipt"></div>
+
+    <hr>
+    
+    <script>
+       let balance = localStorage.getItem("balance") || 500000;
+
+        function formatCurrency(amount) {
+            return `Rp ${amount.toLocaleString("id-ID")}`;
+        }
+
+        function updateBalanceDisplay() {
+            const balanceValue = document.getElementById("balance-value");
+            const formattedBalance = formatCurrency(balance);
+            balanceValue.textContent = formattedBalance;
+        }
+
+        function bookTicket() {
+            var seats = parseInt(document.getElementById('seats').value);
+            var name = document.getElementById('name').value;
+            var age = parseInt(document.getElementById('age').value);
+            var ticketPrice = 60000;
+
+            // Age restriction check
+            if (age < 15) {
+                alert("Sorry, you are not eligible to book tickets for this movie.");
+                return false;
+            }
+
+            var totalPrice = seats * ticketPrice;
+
+            // Deduct amount from balance
+            if (balance >= totalPrice) {
+                balance -= totalPrice;
+                updateBalanceDisplay();
+            } else {
+                alert("Insufficient balance.");
+                return false;
+            }
+
+            // Store receipt data in localStorage
+            var receiptData = {
+                seats: seats,
+                totalPrice: totalPrice,
+                name: name,
+                age: age
+            };
+            localStorage.setItem('receipt', JSON.stringify(receiptData));
+
+            // Update balance in local storage
+            localStorage.setItem('balance', balance);
+
+            // Display receipt
+            displayReceipt();
+
+            return false; // Prevent form submission
+        }
+
+        function displayReceipt() {
+            var receipt = document.getElementById('receipt');
+            var receiptData = localStorage.getItem('receipt');
+            if (receiptData) {
+                receiptData = JSON.parse(receiptData);
+                receipt.innerHTML = `
+                <p>Number of Seats: ${receiptData.seats}</p>
+                <p>Total Price: ${formatCurrency(receiptData.totalPrice)}</p>
+                <p>Name: ${receiptData.name}</p>
+                <p>Age: ${receiptData.age}</p>
+                `;
+            } else {
+                receipt.innerHTML = '';
+        }
+        }
+
+        function cancelTransaction() {
+            var seats = parseInt(document.getElementById('seats').value);
+            var ticketPrice = 60000;
+            var totalPrice = seats * ticketPrice;
+
+            // Refund amount to balance
+            balance += totalPrice;
+            updateBalanceDisplay();
+
+            // Clear form fields and receipt
+            document.getElementById('seats').value = '';
+            document.getElementById('name').value = '';
+            document.getElementById('age').value = '';
+            localStorage.removeItem('receipt');
+            displayReceipt();
+
+            // Update balance in local storage
+            localStorage.setItem('balance', balance);
+        }
+
+        updateBalanceDisplay();
+        displayReceipt();
+    </script>
+</body>
+</html>
+
+

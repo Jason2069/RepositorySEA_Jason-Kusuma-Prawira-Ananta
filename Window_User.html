@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Jason Kusuma">
+    <meta name="description" content="This page is for booking movie ticket.">
+    <title>SEA Cinema</title>
+    <link rel="icon" href="movie icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="UserWindow.CSS">
+
+    <style>
+        #balance-display {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background-color: #f1f1f1;
+            padding: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h1>Welcome to SEA Cinema</h1>
+
+    <p id="p1">"Where we can book you tickets for movies."</p>
+    <div id="balance-display"><span id="balance-value"></span></div>
+    <hr>
+
+    <h2>Top Up Balance</h2>
+    <input type="number" id="top-up-amount" placeholder="Enter amount">
+    <button onclick="topUpBalance()">Top Up</button>
+
+    <hr>
+
+    <p id="p2">Select your movie:</p>
+    <a id="Fast" href="FastX_Movie.html">Fast X</a>
+    <br>
+    <a id="John" href="John Wick.html"> John Wick: Chapter 4</a><br>
+
+    <div id="after-transaction-balance"></div>
+
+    <button id="reset-button">Reset</button>
+
+    <script src="UserWindow.js"></script>
+</body>
+
+</html>
