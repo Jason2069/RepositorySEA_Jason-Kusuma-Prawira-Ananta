@@ -5,7 +5,7 @@ Untuk menjalankan program ini, disarankan digunakan pada Visual Studio Code. Fil
 
 Ketika sudah menjalankan file Window_User.HTML, user akan diperlihatkan dengan halaman bookingnya, halaman ini terdapat judul, filmnya, tempat untuk top up, dan reset button. Untuk membooking film, user cukup untuk klik link salah satu dari filmnya, kemudian user akan dibawa ke halaman film. Pada halaman film ini user akan bisa booking film tersebut, sebelum itu user perlu untuk mengisi nama, umur, jumlah tiket. Setelah user telah mengisi form tersebut, user telah berhasil melakukan transaksi. Jika user ingin memabatalkan transaksi, user hanya perlu meng-klik tombol cancel pada halaman film tersebut.
 
-Jika user tidak mempunyai uang yang cukup, user hanya perlu melakukan top-up pada halaman utama web tersebut.
+Jika user tidak mempunyai uang yang cukup, user hanya perlu melakukan top-up pada halaman utama web tersebut. Untuk tombol reset, jika user mengklik tombol tersebut, balance akan reset ke nilai awal yaitu 500.000.
 
 
 
